@@ -1,1 +1,5 @@
 <h1 class="big">Meet the Herd</h1>
+
+<% if current_user %>
+  <%= link_to 'Add New Horse', new_user_horse_path(current_user) %>
+<% end %>
