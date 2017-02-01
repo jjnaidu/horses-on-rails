@@ -41,10 +41,17 @@ class HorsesController < ApplicationController
   end
 
   def destroy
-    horse = Horse.find(params[:id])
-    @user = horse.user
-    horse.destroy
-    redirect_to user_path(@user)
+    @horse = Horse.find(params[:id])
+    @user = @horse.user
+    @horse.destroy
+
+    respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.json { head :no_content }
+      format.js { render :layout => false }
+    end
+
+    # redirect_to user_path(@user)
   end
 
 private
